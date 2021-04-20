@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bysj.event.znz.bean.TestDao">
+    <!-- 根据主键查询-->
+    <select id="getById" resultType="com.bysj.event.znz.entity.TestEntity" parameterType="java.lang.Integer" >
+        select  *
+        from test
+        where id = #{id}
+    </select>
+    <!--任务Id分页查询-->
+    <select id="listTaskId" resultType="com.bysj.event.znz.entity.TestEntity" parameterType="com.bysj.event.znz.entity.TestEntity">
+        select  tab.first_name
+        from test AS tab
+        <where>
+            <if test="condition.magicId != null and condition.magicId !=''">
+                AND tab.magic_id = #{condition.magicId}
+            </if>
+        </where>
+    </select>
+</mapper>
